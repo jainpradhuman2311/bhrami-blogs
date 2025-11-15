@@ -8,6 +8,7 @@ import RelatedPosts from "@/components/RelatedPosts";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import HideShootingStars from "@/components/HideShootingStars";
 import ReadingProgress from "@/components/ReadingProgress";
+import "./blog-content.css";
 
 interface BlogDetailPageProps {
   params: Promise<{
@@ -38,7 +39,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <HideShootingStars />
       <BackgroundBeamsWithCollision className="min-h-screen border-none rounded-none p-0">
         <main className="min-h-screen relative z-10">
-          {/* Hero Image */}
           <div className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
         <Image
           src={post.image}
@@ -49,7 +49,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         
-        {/* Back Button */}
         <div className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-10">
           <Link
             href="/"
@@ -61,7 +60,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </Link>
         </div>
 
-        {/* Category Badge */}
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-10">
           <span className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-gray-700 text-white text-xs sm:text-sm font-semibold rounded-full border border-gray-600">
             {post.category}
@@ -69,16 +67,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         </div>
       </div>
 
-      {/* Content */}
       <TracingBeam className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         <article>
-          {/* Header */}
           <header className="mb-6 sm:mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               {post.title}
             </h1>
 
-            {/* Meta Information */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 text-gray-400 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-gray-800 text-sm sm:text-base">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <User className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
@@ -99,81 +94,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </div>
           </header>
 
-          {/* Content */}
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div className="text-gray-300 leading-relaxed">
-            {post.content.split("\n\n").map((section, sectionIndex) => {
-              const lines = section.split("\n");
-              const firstLine = lines[0]?.trim() || "";
-              
-              // Handle markdown-style headers
-              if (firstLine.startsWith("# ")) {
-                return (
-                  <h1 key={sectionIndex} className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4 text-white leading-tight">
-                    {firstLine.replace("# ", "")}
-                  </h1>
-                );
-              }
-              if (firstLine.startsWith("## ")) {
-                return (
-                  <h2 key={sectionIndex} className="text-xl sm:text-2xl md:text-3xl font-bold mt-5 sm:mt-6 mb-2 sm:mb-3 text-white leading-tight">
-                    {firstLine.replace("## ", "")}
-                  </h2>
-                );
-              }
-              if (firstLine.startsWith("### ")) {
-                return (
-                  <h3 key={sectionIndex} className="text-lg sm:text-xl md:text-2xl font-bold mt-4 sm:mt-5 mb-2 text-white leading-tight">
-                    {firstLine.replace("### ", "")}
-                  </h3>
-                );
-              }
-              
-              // Handle code blocks
-              if (firstLine.startsWith("```")) {
-                const codeContent = lines.slice(1, -1).join("\n");
-                const language = firstLine.replace("```", "").trim();
-                return (
-                  <pre key={sectionIndex} className="bg-gray-900 border border-gray-800 p-3 sm:p-4 rounded-lg overflow-x-auto my-3 sm:my-4">
-                    <code className="text-xs sm:text-sm text-gray-300">{codeContent}</code>
-                  </pre>
-                );
-              }
-              
-              // Handle list items
-              if (firstLine.startsWith("- ") || firstLine.startsWith("* ")) {
-                return (
-                  <ul key={sectionIndex} className="list-disc ml-4 sm:ml-6 mb-3 sm:mb-4 space-y-1.5 sm:space-y-2">
-                    {lines.map((line, lineIndex) => {
-                      const trimmed = line.trim();
-                      if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-                        return (
-                          <li key={lineIndex} className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                            {trimmed.replace(/^[-*] /, "")}
-                          </li>
-                        );
-                      }
-                      return null;
-                    })}
-                  </ul>
-                );
-              }
-              
-              // Regular paragraphs
-              if (section.trim()) {
-                return (
-                  <p key={sectionIndex} className="mb-3 sm:mb-4 text-base sm:text-lg leading-relaxed">
-                    {section}
-                  </p>
-                );
-              }
-              
-              return null;
-            })}
-            </div>
-          </div>
+          <div 
+            className="prose prose-lg dark:prose-invert max-w-none blog-content"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
-          {/* Footer */}
         <footer className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
           <Link
             href="/"
@@ -186,11 +111,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       </article>
       </TracingBeam>
 
-          {/* Related Posts */}
           <RelatedPosts currentPost={post} allPosts={allPosts} />
         </main>
       </BackgroundBeamsWithCollision>
     </>
   );
 }
-

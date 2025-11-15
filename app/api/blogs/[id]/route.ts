@@ -3,10 +3,11 @@ import { getBlogById } from "@/lib/blog-loader";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const blog = await getBlogById(params.id);
+    const { id } = await params;
+    const blog = await getBlogById(id);
 
     if (!blog) {
       return NextResponse.json(

@@ -4,13 +4,13 @@ import React from "react";
  * Parse markdown text and convert to React elements
  * Supports **bold** and *italic* formatting
  */
-export function parseMarkdown(text: string, keyPrefix: string = ""): (string | JSX.Element)[] {
-  const parts: (string | JSX.Element)[] = [];
+export function parseMarkdown(text: string, keyPrefix: string = ""): (string | React.JSX.Element)[] {
+  const parts: (string | React.JSX.Element)[] = [];
   let lastIndex = 0;
   
   // Match bold (**text**)
   const boldRegex = /\*\*(.*?)\*\*/g;
-  let match;
+  let match: RegExpExecArray | null;
   const matches: Array<{ type: 'bold' | 'italic'; start: number; end: number; content: string }> = [];
   
   while ((match = boldRegex.exec(text)) !== null) {
@@ -27,14 +27,14 @@ export function parseMarkdown(text: string, keyPrefix: string = ""): (string | J
   while ((match = italicRegex.exec(text)) !== null) {
     // Check if it's not part of a bold match
     const isPartOfBold = matches.some(m => 
-      match.index >= m.start && match.index < m.end
+      match!.index >= m.start && match!.index < m.end
     );
     if (!isPartOfBold) {
       matches.push({
         type: 'italic',
-        start: match.index,
-        end: match.index + match[0].length,
-        content: match[1]
+        start: match!.index,
+        end: match!.index + match![0].length,
+        content: match![1]
       });
     }
   }
