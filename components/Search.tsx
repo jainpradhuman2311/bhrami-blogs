@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search as SearchIcon, X, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { blogPosts, BlogPost } from "@/lib/blog-data";
+import { BlogPost } from "@/lib/blog-data";
 import { cn } from "@/lib/utils";
 
 export default function Search() {
@@ -171,29 +171,26 @@ export default function Search() {
       return;
     }
 
-    const searchTerm = translatedQuery.toLowerCase().trim();
-    const originalTerm = query.toLowerCase().trim();
-    
-    // Search with both translated and original query
-    const filtered = blogPosts.filter((post) => {
-      const titleMatch = 
-        post.title.toLowerCase().includes(searchTerm) ||
-        post.title.toLowerCase().includes(originalTerm);
-      const excerptMatch = 
-        post.excerpt.toLowerCase().includes(searchTerm) ||
-        post.excerpt.toLowerCase().includes(originalTerm);
-      const contentMatch = 
-        post.content.toLowerCase().includes(searchTerm) ||
-        post.content.toLowerCase().includes(originalTerm);
-      const categoryMatch = 
-        post.category.toLowerCase().includes(searchTerm) ||
-        post.category.toLowerCase().includes(originalTerm);
-      
-      return titleMatch || excerptMatch || contentMatch || categoryMatch;
-    });
+    const performSearch = async () => {
+      try {
+        const searchTerm = translatedQuery.trim();
+        const response = await fetch(`/api/blogs?q=${encodeURIComponent(searchTerm)}&limit=10`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          setResults(data);
+        } else {
+          console.error("Search failed");
+          setResults([]);
+        }
+      } catch (error) {
+        console.error("Search error:", error);
+        setResults([]);
+      }
+    };
 
-    setResults(filtered);
-  }, [translatedQuery, query]);
+    performSearch();
+  }, [translatedQuery]);
 
   const handleSearchClick = () => {
     setIsOpen(true);

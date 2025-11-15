@@ -61,10 +61,19 @@ bhrami-blogs/
 │   ├── not-found.tsx          # 404 page
 │   └── globals.css            # Global styles
 ├── components/
-│   ├── Hero.tsx               # Hero section component
-│   └── BlogCard.tsx           # Blog card component
+│   ├── Spotlight.tsx          # Hero section with spotlight effect
+│   ├── AppleCardsCarousel.tsx # Featured blogs carousel
+│   ├── BentoGrid.tsx         # Category grid component
+│   └── ...                    # Other components
+├── content/
+│   ├── blogs/                # Individual blog JSON files
+│   │   ├── 1.json
+│   │   ├── 2.json
+│   │   └── template.json
+│   └── featured.json          # Featured blog IDs
 ├── lib/
-│   ├── blog-data.ts           # Sample blog data
+│   ├── blog-loader.ts         # Blog loading system
+│   ├── blog-data.ts           # Blog API exports
 │   └── utils.ts               # Utility functions
 └── public/                    # Static assets
 ```
@@ -73,21 +82,17 @@ bhrami-blogs/
 
 ### Adding New Blog Posts
 
-Edit `lib/blog-data.ts` to add new blog posts. Each post should follow the `BlogPost` interface:
+1. Create a new JSON file in `content/blogs/` directory
+2. Name it `{id}.json` where `{id}` is a unique identifier
+3. Use `content/blogs/template.json` as a reference
+4. Fill in all required fields (id, title, excerpt, content, author, date, category, image, readTime)
+5. The blog will automatically appear on the website
 
-```typescript
-{
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  category: string;
-  image: string;
-  readTime: number;
-}
-```
+For detailed documentation, see `BLOG_SYSTEM.md`
+
+### Featured Blogs
+
+Edit `content/featured.json` to control which blogs appear in the featured carousel. Simply add or remove blog IDs from the `featuredIds` array.
 
 ### Styling
 

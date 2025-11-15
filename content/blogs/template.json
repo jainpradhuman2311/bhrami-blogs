@@ -1,0 +1,13 @@
+{
+  "id": "unique-id-here",
+  "title": "Your Blog Title Here",
+  "excerpt": "A short description or excerpt of your blog post that will appear in previews.",
+  "content": "# Your Blog Title\n\nYour blog content goes here. You can use markdown formatting:\n\n- **Bold text**\n- *Italic text*\n- Lists\n- Headers\n\n## Subsection\n\nMore content here...",
+  "author": "Author Name",
+  "date": "2024-01-01",
+  "category": "Category Name",
+  "image": "https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?w=800&h=600&fit=crop",
+  "readTime": 5,
+  "sourceUrl": "https://optional-source-url.com"
+}
+

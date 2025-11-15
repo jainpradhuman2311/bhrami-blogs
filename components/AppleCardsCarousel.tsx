@@ -11,7 +11,8 @@ interface AppleCardsCarouselWrapperProps {
 export default function AppleCardsCarouselWrapper({
   posts,
 }: AppleCardsCarouselWrapperProps) {
-  const featuredPosts = posts.slice(0, 5);
+  // Use provided posts (which are already featured blogs from the server)
+  const featuredPosts = posts.length > 0 ? posts : [];
 
   const cards = featuredPosts.map((card, index) => (
     <Card key={card.id} card={card} index={index} layout={true} />
