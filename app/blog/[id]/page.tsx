@@ -7,6 +7,7 @@ import TracingBeam from "@/components/TracingBeam";
 import RelatedPosts from "@/components/RelatedPosts";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import HideShootingStars from "@/components/HideShootingStars";
+import ReadingProgress from "@/components/ReadingProgress";
 
 interface BlogDetailPageProps {
   params: Promise<{
@@ -30,6 +31,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <>
+      <ReadingProgress />
       <HideShootingStars />
       <BackgroundBeamsWithCollision className="min-h-screen border-none rounded-none p-0">
         <main className="min-h-screen relative z-10">
