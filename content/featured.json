@@ -1,7 +1,8 @@
 {
   "featuredIds": [
     "1",
-    "2"
+    "1763233681790",
+    "1763234773009"
   ],
   "description": "List of blog post IDs that should be featured on the homepage. Add or remove IDs to change featured blogs. The order in this array determines the display order."
 }
