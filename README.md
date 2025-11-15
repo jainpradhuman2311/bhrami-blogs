@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bhrami Blog
+
+A modern, beautiful blog website built with Next.js 16, TypeScript, Tailwind CSS, and Aceternity UI-inspired components.
+
+## Features
+
+- 🎨 **Modern Block Theme UI** - Beautiful, responsive design with block-based layouts
+- 🚀 **Hero Section** - Animated hero section with gradient backgrounds and smooth animations
+- 📝 **Blog Cards** - Elegant blog card components with hover effects
+- 📄 **Blog Detail Pages** - Dynamic routing for individual blog posts
+- 🌙 **Dark Mode Support** - Automatic dark mode based on system preferences
+- ✨ **Animations** - Smooth animations powered by Framer Motion
+- 📱 **Responsive Design** - Fully responsive across all devices
+
+## Tech Stack
+
+- **Next.js 16** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **Lucide React** - Icon library
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build for Production
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+bhrami-blogs/
+├── app/
+│   ├── blog/
+│   │   └── [id]/
+│   │       └── page.tsx      # Dynamic blog detail page
+│   ├── layout.tsx             # Root layout
+│   ├── page.tsx               # Home page with hero and blog listing
+│   ├── not-found.tsx          # 404 page
+│   └── globals.css            # Global styles
+├── components/
+│   ├── Hero.tsx               # Hero section component
+│   └── BlogCard.tsx           # Blog card component
+├── lib/
+│   ├── blog-data.ts           # Sample blog data
+│   └── utils.ts               # Utility functions
+└── public/                    # Static assets
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Customization
 
-## Deploy on Vercel
+### Adding New Blog Posts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Edit `lib/blog-data.ts` to add new blog posts. Each post should follow the `BlogPost` interface:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+{
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  category: string;
+  image: string;
+  readTime: number;
+}
+```
+
+### Styling
+
+The project uses Tailwind CSS v4. Customize colors and styles in `app/globals.css` or by modifying Tailwind classes directly in components.
+
+## License
+
+MIT
