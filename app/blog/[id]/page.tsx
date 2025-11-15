@@ -34,7 +34,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <BackgroundBeamsWithCollision className="min-h-screen border-none rounded-none p-0">
         <main className="min-h-screen relative z-10">
           {/* Hero Image */}
-          <div className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] w-full overflow-hidden">
+          <div className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
         <Image
           src={post.image}
           alt={post.title}
