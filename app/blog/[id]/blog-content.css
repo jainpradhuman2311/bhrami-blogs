@@ -4,6 +4,12 @@
   line-height: 1.75;
 }
 
+/* Override prose styles for alignment */
+.blog-content.prose p,
+.blog-content.prose div {
+  text-align: inherit;
+}
+
 .blog-content p {
   margin-bottom: 1rem;
   font-size: 1.125rem;
@@ -130,6 +136,65 @@
   height: auto;
   border-radius: 0.5rem;
   margin: 1.5rem 0;
+}
+
+/* Text alignment styles - Quill alignment classes */
+.blog-content p.ql-align-center,
+.blog-content div.ql-align-center,
+.blog-content .ql-align-center,
+.blog-content p[class*="ql-align-center"],
+.blog-content div[class*="ql-align-center"] {
+  text-align: center !important;
+}
+
+.blog-content p.ql-align-right,
+.blog-content div.ql-align-right,
+.blog-content .ql-align-right,
+.blog-content p[class*="ql-align-right"],
+.blog-content div[class*="ql-align-right"] {
+  text-align: right !important;
+}
+
+.blog-content p.ql-align-justify,
+.blog-content div.ql-align-justify,
+.blog-content .ql-align-justify,
+.blog-content p[class*="ql-align-justify"],
+.blog-content div[class*="ql-align-justify"] {
+  text-align: justify !important;
+}
+
+/* Text alignment from inline styles - handle various formats */
+.blog-content p[style*="text-align:center"],
+.blog-content p[style*="text-align: center"],
+.blog-content p[style*="text-align:  center"],
+.blog-content div[style*="text-align:center"],
+.blog-content div[style*="text-align: center"],
+.blog-content div[style*="text-align:  center"],
+.blog-content [style*="text-align:center"],
+.blog-content [style*="text-align: center"] {
+  text-align: center !important;
+}
+
+.blog-content p[style*="text-align:right"],
+.blog-content p[style*="text-align: right"],
+.blog-content p[style*="text-align:  right"],
+.blog-content div[style*="text-align:right"],
+.blog-content div[style*="text-align: right"],
+.blog-content div[style*="text-align:  right"],
+.blog-content [style*="text-align:right"],
+.blog-content [style*="text-align: right"] {
+  text-align: right !important;
+}
+
+.blog-content p[style*="text-align:justify"],
+.blog-content p[style*="text-align: justify"],
+.blog-content p[style*="text-align:  justify"],
+.blog-content div[style*="text-align:justify"],
+.blog-content div[style*="text-align: justify"],
+.blog-content div[style*="text-align:  justify"],
+.blog-content [style*="text-align:justify"],
+.blog-content [style*="text-align: justify"] {
+  text-align: justify !important;
 }
 
 /* Responsive styles */
