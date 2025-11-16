@@ -21,7 +21,7 @@ let blogCache: BlogPost[] | null = null;
 let featuredCache: BlogPost[] | null = null;
 let cacheTimestamp: number = 0;
 // In development, disable cache (0) for immediate updates. In production, use 5 minutes cache
-const CACHE_DURATION = 0;
+const CACHE_DURATION = 300000;
 
 /**
  * Get all blog posts with caching for performance
